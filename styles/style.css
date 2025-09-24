@@ -1,225 +1,57 @@
-/* 
-1. Устанавливает относительное позиционирование для всех элементов, 
-   1.1 Нужно для того, чтобы псевдоэлементы (::before/::after) и вложенные элементы могли позиционироваться внутри блока.
-2. Закругляет углы у всех элементов, 
-   2.1 Дает мягкий внешний вид.
-3. Добавляет внутренние отступы (25px сверху и по бокам, 20px снизу),
-   3.1 Создает пространство между содержимым и границей элемента.
-*/
-* {
-  position: relative;
-  border-radius: 4px;
-  padding: 25px 25px 20px;
-}
-
-/* 
-1. Создает псевдоэлемент перед каждым элементом (::before),
-   1.1 Используется для добавления подписи или метки.
-2. Абсолютное позиционирование относительно родителя,
-   2.1 Нужно, чтобы подписи отображались поверх блока в определённой точке.
-3. Настройка текста (размер, межстрочный интервал, трекинг, жирность),
-   3.1 Делает подписи читаемыми и стилизованными.
-*/
-*::before {
-  position: absolute;
-  top: 8px;
-  left: 10px;
-  font-size: 11px;
-  line-height: 10px;
-  letter-spacing: 0.04em;
-  font-weight: 700;
-}
-
-/* 
-1. Добавляет отступ снизу у каждого элемента, кроме последнего,
-   1.1 Создает равномерное вертикальное расстояние между блоками.
-*/
-*:not(:last-child):not(footer) {
-  margin-bottom: 20px;
-}
-
-footer {
-  margin-bottom: 0;
-}
-
-/* 
-1. Убирает стандартные внешние отступы браузера,
-   1.1 Дает «чистый лист» для верстки.
-2. Устанавливает базовое семейство шрифтов (Montserrat, Arial, sans-serif),
-   2.1 Обеспечивает единый стиль текста на странице.
-3. Определяет размер шрифта (14px) и межстрочный интервал (20px),
-   3.1 Улучшает читаемость текста.
-*/
-html,
 body {
+  border: 1px solid blue;
   margin: 0;
-  font-family: "Montserrat", "Arial", sans-serif;
+  padding: 0 30px;
   font-size: 14px;
-  line-height: 20px;
-}
-
-/* 
-1. Устанавливает минимальную ширину страницы (430px),
-   1.1 Предотвращает слишком сильное сжатие в маленьких окнах.
-2. Добавляет пунктирную рамку вокруг body,
-   2.1 Делает границы блока наглядными при разработке.
-*/
-body {
-  min-width: 430px;
-  border: 2px dashed #c7e4ff;
-}
-
-main,
-header,
-footer {
-  border: 2px solid #7fc1ff;
-  background-color: #f3faff;
-}
-
-main {
-  /* 
-  Превращаем <main> в grid-контейнер,
-  все прямые дети становятся grid-элементами 
- */
-  display: grid;
-
-  /* 
-     Задаём карту сетки с именованными областями:
-     первая строка: область "nav" на две колонки,
-     вторая строка: "about" слева и "skills" справа 
-  */
-  grid-template-areas:
-    "nav nav"
-    "about skills";
-
-  /* 
-  Общий зазор между строками и колонками — 1.5rem 
-  */
-  gap: 1.5rem;
-}
-
-main > nav {
-  /* 
-  <nav> занимает область "nav"
-  (растянется на всю первую строку сетки) 
-  */
-  grid-area: nav;
-}
-
-main > nav + section:not(:last-child) {
-  /* 
-  Первый <section> после <nav>, 
-  если он не последний ребёнок, помещается в область "about".
-  */
-  grid-area: about;
-
-  /* 
-  Добавляем отступ справа у блока "about"
-  (поверх стандартного gap сетки) 
-  */
-  margin-right: 20px;
-
-  /*
-  Убираем нижний отступ у блока "about" 
-  */
-  margin-bottom: 0;
-}
-
-/* 
-Второй <section> без явного grid-area автоматически займёт
-оставшуюся область "skills" во второй строке справа 
-*/
-
-footer {
-  margin-bottom: 0;
-}
-
-/* 
-1. Устанавливает цвет для псевдоэлементов html, body, header, main, footer,
-   1.1 Делает все структурные подписи одного оттенка для визуальной целостности.
-*/
-html::before,
-body::before,
-header::before,
-main::before,
-footer::before {
-  color: #7fc1ff;
-}
-
-/* 
-1. Добавляет подпись "html" через псевдоэлемент,
-   1.1 Используется для визуальной маркировки структуры документа.
-*/
-html::before {
-  content: "html";
-}
-
-/* 
-1. Добавляет подпись "body" через псевдоэлемент,
-   1.1 Помогает отобразить и подписать границы блока body.
-*/
-body::before {
-  content: "body";
-}
-
-header::before {
-  content: "header";
-}
-
-main::before {
-  content: "main";
-}
-
-section::before {
-  content: "section";
-}
-
-footer::before {
-  content: "footer";
-}
-
-nav,
-section,
-article,
-aside {
-  border: 2px solid #9779ec;
-  background-color: #f9f7ff;
-}
-nav::before,
-section::before,
-article::before,
-aside::before {
-  color: #9779ec;
-}
-
-nav::before {
-  content: "nav";
-}
-
-article::before {
-  content: "article";
-}
-
-aside::before {
-  content: "aside";
+  line-height: 22px;
+  font-family: "Georgia", serif;
+  color: #222222;
 }
 
 h1 {
-  border: 2px solid #ff994f;
-  font-size: 18px;
-  background-color: #ffffff;
-}
-h1::before {
-  content: "h1";
-  color: #ff994f;
+  font-size: 20px;
+  line-height: normal;
 }
 
-p {
-  background-color: #ffffff;
-  border: 2px solid #f36dff;
+nav {
+  color: #888888;
 }
 
-p::before {
-  color: #f36dff;
-  content: "p";
+aside {
+  margin: 20px 0;
+}
+
+pre,
+code {
+  font-family: "Courier New", "Courier", monospace;
+  line-height: normal;
+  color: #6a2cce;
+}
+
+blockquote {
+  padding-left: 14px;
+  border-left: 2px solid #6a2cce;
+  color: #6a2cce;
+}
+
+cite {
+  color: #222222;
+}
+
+time {
+  color: #6a2cce;
+}
+
+.danger-text {
+  color: #ff4400;
+}
+
+.danger-block {
+  padding: 5px 10px;
+  background-color: #ffd0bf;
+}
+
+.no-danger-block {
+  padding: 5px 10px;
+  background-color: #c6f5f0;
 }
